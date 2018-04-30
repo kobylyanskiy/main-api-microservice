@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: main-api-deployment
+spec:
+  selector:
+    matchLabels:
+      app: main-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: main-api
+    spec:
+      containers:
+      - name: main-api
+        image: gcr.io/spy-crowd/main-api:0.9.0
+        ports:
+        - containerPort: 5000
