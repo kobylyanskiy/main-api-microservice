@@ -1,4 +1,5 @@
 import json
+import requests
 from flask import Flask, request
 
 
@@ -8,14 +9,9 @@ app = Flask(__name__)
 @app.route('/agents', methods=['GET', 'POST'])
 def agents():
     if request.method == 'POST':
-        return json.dumps({
-            'result': True,
-        })
+        return requests.post('http://mongo-api:5000/agents').content
     else:
-        return json.dumps({
-            'result': True,
-            'data': [{'codename': 'agent'}],
-        })
+        return requests.get('http://mongo-api:5000/agents').content
 
 
 if __name__ == '__main__':
