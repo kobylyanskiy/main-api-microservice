@@ -20,13 +20,11 @@ def agents():
             return json.dumps({
                 'result': True,
                 'data': [],
-                'codefresh': 'test',
             })
         else:
             return json.dumps({
                 'result': False,
                 'data': [],
-                'codefresh': 'test',
             })
 
 
