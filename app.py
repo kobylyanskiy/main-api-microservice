@@ -46,5 +46,27 @@ def get_agent(codename):
         })
 
 
+@app.route('/operations', methods=['GET', 'POST'])
+def operations():
+    if request.method == 'POST':
+        operation = request.get_json(silent=True)
+        response = requests.post('http://cassandra-api:5000/operations', data=operation).json()
+        return json.dumps({
+            'result': response['result'],
+        })
+    else:
+        response = requests.get('http://cassandra-api:5000/operations').json()
+        if response['result']:
+            return json.dumps({
+                'result': True,
+                'data': [],
+            })
+        else:
+            return json.dumps({
+                'result': False,
+                'data': [],
+            })
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
