@@ -51,8 +51,10 @@ def operations():
     if request.method == 'POST':
         operation = request.get_json(silent=True)
         response = requests.post('http://cassandra-api:5000/operations', data=operation).json()
+        response_neo4j = requests.post('http://neo4j-api:5000/nodes', data=operation).json()
         return json.dumps({
             'result': response['result'],
+            'result_neo4j': response_neo4j['result'],
         })
     else:
         response = requests.get('http://cassandra-api:5000/operations').json()
