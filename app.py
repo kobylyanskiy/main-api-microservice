@@ -13,6 +13,7 @@ def agents():
         response = requests.post('http://mongo-api:5000/agents', data=agent).json()
         return json.dumps({
             'result': response['result'],
+            'agent_id': response['agent_id'],
         })
     else:
         response = requests.get('http://mongo-api:5000/agents').json()
