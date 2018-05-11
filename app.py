@@ -10,7 +10,7 @@ app = Flask(__name__)
 def agents():
     if request.method == 'POST':
         agent = request.get_json(silent=True)
-        response = requests.post('http://mongo-api:5000/agents', data=agent).json()
+        response = requests.post('http://mongo-api:5000/agents', data=json.dumps(agent)).json()
         return json.dumps({
             'result': response['result'],
             'agent_id': response['agent_id'],
