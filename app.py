@@ -11,9 +11,9 @@ def agents():
     if request.method == 'POST':
         agent = request.get_json(silent=True)
         response = requests.post('http://mongo-api:5000/agents', data=agent).json()
-        return json.dumps({
-            'result': response['result'],
-        })
+        return agent#json.dumps({
+          #  'result': response['result'],
+        #})
     else:
         response = requests.get('http://mongo-api:5000/agents').json()
         if response['result']:
@@ -29,7 +29,7 @@ def agents():
 
 
 @app.route('/agents/<string:codename>', methods=['GET', 'POST'])
-def get_agent(codename):
+def agent_req(codename):
     if request.method == 'POST':
         agent = request.get_json(silent=True)
         response = requests.post('http://mongo-api:5000/agents/{}'.format(codename), data=agent).json()
