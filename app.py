@@ -43,7 +43,7 @@ def operations():
             'result_neo4j': response_neo4j['result'],
         })
     else:
-        response = requests.get('http://0.0.0.0:6000/operations').json()
+        response = requests.get('http://0.0.0.0:5000/operations').json()
         return json.dumps(response)
 
 
@@ -65,7 +65,7 @@ def operation_req(codename):
             'result': response['result'], 
         })
     else:
-        response = requests.get('http://0.0.0.0:6000/operations/{}'.format(codename)).json()
+        response = requests.get('http://0.0.0.0:5000/operations/{}'.format(codename)).json()
         return json.dumps(response) 
 
 
