@@ -25,14 +25,7 @@ def agent_req(codename):
         return json.dumps({'result': response['result']})
     else:
         response = requests.get('http://mongo-api:5000/agents/{}'.format(codename)).json()
-        if not response['result']:
-            return json.dumps({
-                'result': False,
-            })
-        return json.dumps({
-            'result': True,
-            'agent': response['agent'],
-        })
+        return json.dumps(response)
 
 
 @app.route('/operations', methods=['GET', 'POST'])
