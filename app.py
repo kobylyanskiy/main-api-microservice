@@ -11,10 +11,7 @@ def agents():
     if request.method == 'POST':
         agent = request.get_json(silent=True)
         response = requests.post('http://mongo-api:5000/agents', data=json.dumps(agent)).json()
-        return json.dumps({
-            'result': response['result'],
-            'agent_id': response['agent_id'],
-        })
+        return json.dumps(response)
     else:
         response = requests.get('http://mongo-api:5000/agents').json()
         if response['result']:
