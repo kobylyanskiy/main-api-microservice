@@ -52,7 +52,7 @@ def operations():
 def operation_req(codename):
     if request.method == 'POST':
         operation = request.get_json(force=True)
-        response = requests.post('http://cassandra:5000/operations/{}'.format(codename), data=json.dumps(operation)).json()
+        response = requests.post('http://cassandra-api:5000/operations/{}'.format(codename), data=json.dumps(operation)).json()
         #if response['result'] == True and response['data']['status'] == ('complete' or 'failed'):
             #for codename in response['data']['agents']:
                 ##if response['data']['status'] == 'complete':
@@ -65,7 +65,7 @@ def operation_req(codename):
             'result': response['result'], 
         })
     else:
-        response = requests.get('http://cassandra-api:5000/operations/{}'.format(codename)).json()
+        response = requests.get('http://0.0.0.0:5000/operations/{}'.format(codename)).json()
         return json.dumps(response) 
 
 
