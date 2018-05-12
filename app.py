@@ -35,7 +35,7 @@ def operations():
         operation = request.get_json(force=True)
         #check agents(mongo)
         response_neo4j = {'result':'kik'}
-        response = requests.post('http://0.0.0.0:6000/operations', data=json.dumps(operation)).json()
+        response = requests.post('http://0.0.0.0:5000/operations', data=json.dumps(operation)).json()
         #response_neo4j = requests.post('http://neo4j-api:5000/nodes', data=operation).json()
         #make mongo update
         return json.dumps({
@@ -52,7 +52,7 @@ def operations():
 def operation_req(codename):
     if request.method == 'POST':
         operation = request.get_json(force=True)
-        response = requests.post('http://0.0.0.0:6000/operations/{}'.format(codename), data=json.dumps(operation)).json()
+        response = requests.post('http://0.0.0.0:5000/operations/{}'.format(codename), data=json.dumps(operation)).json()
         #if response['result'] == True and response['data']['status'] == ('complete' or 'failed'):
             #for codename in response['data']['agents']:
                 ##if response['data']['status'] == 'complete':
