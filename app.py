@@ -18,7 +18,7 @@ def agents():
 
 
 @app.route('/agents/<string:codename>', methods=['GET', 'POST'])
-def get_agent(codename):
+def agent_req(codename):
     if request.method == 'POST':
         agent = request.get_json(silent=True)
         response = requests.post('http://mongo-api:5000/agents/{}'.format(codename), data=agent).json()
