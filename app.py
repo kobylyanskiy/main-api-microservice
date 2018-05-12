@@ -65,7 +65,7 @@ def operation_req(codename):
             'result': response['result'], 
         })
     else:
-        response = requests.get('http://0.0.0.0:5000/operations/{}'.format(codename)).json()
+        response = requests.get('http://cassandra-api:5000/operations/{}'.format(codename)).json()
         return json.dumps(response) 
 
 
