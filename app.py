@@ -22,7 +22,7 @@ def agent_req(codename):
     if request.method == 'POST':
         agent = request.get_json(silent=True)
         response = requests.post('http://mongo-api:5000/agents/{}'.format(codename), data=agent).json()
-        return json.dumps({'result': response['result']})
+        return json.dumps(response)
     else:
         response = requests.get('http://mongo-api:5000/agents/{}'.format(codename)).json()
         return json.dumps(response)
