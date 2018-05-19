@@ -71,6 +71,6 @@ func main() {
 	r.HandleFunc("/agents", add_agent).Methods("POST")
 	r.HandleFunc("/agents", get_agent).Methods("GET")
 
-	log.Println("Start listening on 80")
-	log.Fatal(http.ListenAndServe(":80", r))
+	log.Println("Start listening on 5000")
+	log.Fatal(http.ListenAndServe(":5000", r))
 }
