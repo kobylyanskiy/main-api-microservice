@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -23,8 +24,8 @@ type operation struct {
 func get_agent(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	codename := vars["codename"]
-	// resp, _ := http.Get("http://mongo-api:5000")
-	// fmt.Println(resp)
+	resp, _ := http.Get("http://mongo-api:5000/agents")
+	fmt.Println(resp)
 	res1D := &agent{
 		Codename:   codename,
 		Age:        27,
@@ -69,7 +70,7 @@ func main() {
 	r.HandleFunc("/agents/{codename}", update_agent).Methods("POST")
 	r.HandleFunc("/agents/{codename}", get_agent).Methods("GET")
 	r.HandleFunc("/agents", add_agent).Methods("POST")
-	r.HandleFunc("/agents", get_agent).Methods("GET")
+	r.HandleFunc("/agents", get_agents).Methods("GET")
 
 	log.Println("Start listening on 5000")
 	log.Fatal(http.ListenAndServe(":5000", r))
